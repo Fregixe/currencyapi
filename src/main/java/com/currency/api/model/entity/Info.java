@@ -1,4 +1,4 @@
-package com.example.demo.model.entity;
+package com.currency.api.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

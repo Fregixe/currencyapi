@@ -1,10 +1,10 @@
-package com.example.demo.service;
+package com.currency.api.service;
 
-import com.example.demo.model.dto.response.ConvertationAmountDto;
-import com.example.demo.model.dto.response.CurrencyDto;
-import com.example.demo.model.dto.response.RateDto;
-import com.example.demo.model.entity.Currency;
-import com.example.demo.model.entity.Info;
+import com.currency.api.model.dto.response.ConvertationAmountDto;
+import com.currency.api.model.entity.Currency;
+import com.currency.api.model.entity.Info;
+import com.currency.api.model.dto.response.CurrencyDto;
+import com.currency.api.model.dto.response.RateDto;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +23,7 @@ public class CurrencyService {
 
     private final RestTemplate restTemplate = new RestTemplate();
     private final ModelMapper modelMapper;
+    private final LoggerService loggerService;
 
     public List<Currency> loadCurrencies(){
         ResponseEntity<Info[]> responseEntity = restTemplate
@@ -36,12 +37,14 @@ public class CurrencyService {
         return rates;
     }
     public List<CurrencyDto> getAllCurrency() {
+        loggerService.log("Get currencies table");
         return loadCurrencies().stream()
                 .map(currency -> modelMapper.map(currency, CurrencyDto.class))
                 .collect(Collectors.toList());
     }
 
     public ConvertationAmountDto convert(String currencyFrom, String currencyTo, double amount) {
+        loggerService.log("Converted " + amount + " from " + currencyFrom + " to " + currencyTo);
         Currency from = loadCurrencies().stream()
                 .filter(currencyResDto -> currencyResDto.getCode().equals(currencyFrom))
                 .findFirst()
@@ -75,6 +78,7 @@ public class CurrencyService {
     }
 
     public List<RateDto> getRates(List<String> requiredCurrency) {
+        loggerService.log("Got currencies for " + requiredCurrency);
         List<RateDto> currencies = loadCurrencies().stream()
                 .filter(currency ->
                         requiredCurrency.contains(currency.getCode()) &&

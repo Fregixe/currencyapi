@@ -1,8 +1,8 @@
-package com.example.demo.configuration;
+package com.currency.api.configuration;
 
-import com.example.demo.model.dto.response.CurrencyDto;
-import com.example.demo.model.dto.response.RateDto;
-import com.example.demo.model.entity.Currency;
+import com.currency.api.model.entity.Currency;
+import com.currency.api.model.dto.response.CurrencyDto;
+import com.currency.api.model.dto.response.RateDto;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.modelmapper.convention.MatchingStrategies;

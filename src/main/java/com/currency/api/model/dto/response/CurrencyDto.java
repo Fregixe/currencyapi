@@ -1,4 +1,4 @@
-package com.example.demo.model.dto.response;
+package com.currency.api.model.dto.response;
 
 import lombok.Data;
 import lombok.Getter;

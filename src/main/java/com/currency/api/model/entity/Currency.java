@@ -1,4 +1,4 @@
-package com.example.demo.model.entity;
+package com.currency.api.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

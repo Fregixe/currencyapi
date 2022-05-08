@@ -1,9 +1,9 @@
-package com.example.demo.controller;
+package com.currency.api.controller;
 
-import com.example.demo.model.dto.response.ConvertationAmountDto;
-import com.example.demo.model.dto.response.CurrencyDto;
-import com.example.demo.model.dto.response.RateDto;
-import com.example.demo.service.CurrencyService;
+import com.currency.api.model.dto.response.ConvertationAmountDto;
+import com.currency.api.service.CurrencyService;
+import com.currency.api.model.dto.response.CurrencyDto;
+import com.currency.api.model.dto.response.RateDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
