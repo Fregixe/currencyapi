@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 public class ModelMapperConfig {
 
     @Bean
-    public ModelMapper modelMapper(){
+    public ModelMapper modelMapper() {
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         mapCurrencyToCurrencyDTO(modelMapper);
@@ -21,7 +21,7 @@ public class ModelMapperConfig {
         return modelMapper;
     }
 
-    private void mapCurrencyToCurrencyDTO(ModelMapper modelMapper){
+    private void mapCurrencyToCurrencyDTO(ModelMapper modelMapper) {
         TypeMap<Currency, CurrencyDto> config =
                 modelMapper.createTypeMap(Currency.class, CurrencyDto.class);
         config.addMapping(
@@ -33,7 +33,8 @@ public class ModelMapperConfig {
                 CurrencyDto::setCode
         );
     }
-    private void mapCurrencyToRateDto(ModelMapper modelMapper){
+
+    private void mapCurrencyToRateDto(ModelMapper modelMapper) {
         TypeMap<Currency, RateDto> config =
                 modelMapper.createTypeMap(Currency.class, RateDto.class);
 

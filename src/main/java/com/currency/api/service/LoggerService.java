@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 public class LoggerService {
     private final ActionRepository actionRepository;
 
-    public void log(String action){
+    public void log(String action) {
         Action act = new Action();
         act.setAction(action);
         act.setTime(new Timestamp(System.currentTimeMillis()));

@@ -22,5 +22,4 @@ public class Action {
     private Long id;
     private String action;
     private Timestamp time;
-
 }
