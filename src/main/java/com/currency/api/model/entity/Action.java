@@ -20,6 +20,6 @@ public class Action {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String action;
+    private String name;
     private Timestamp time;
 }

@@ -22,21 +22,22 @@ import java.util.stream.Collectors;
 public class CurrencyService {
     private static final String TABLE_URL = "https://api.nbp.pl/api/exchangerates/tables/A?format=json";
 
-    private final RestTemplate restTemplate = new RestTemplate();
+    private static final RestTemplate restTemplate = new RestTemplate();
     private final ModelMapper modelMapper;
     private final LoggerService loggerService;
 
-    public List<Currency> loadCurrencies() {
+    public static List<Currency> loadCurrencies() {
         ResponseEntity<Info[]> responseEntity = restTemplate
                 .getForEntity(TABLE_URL, Info[].class);
-        List<Currency> rates = new ArrayList<>();
+        List<Currency> availableCurrencies = new ArrayList<>();
+        availableCurrencies.add(new Currency("polski złoty", "PLN", 1.0));
         for (Info info : Objects.requireNonNull(responseEntity.getBody())) {
-            rates.addAll(info.getRates());
+            availableCurrencies.addAll(info.getRates());
         }
-        return rates;
+        return availableCurrencies;
     }
 
-    public List<CurrencyDto> getAllCurrency() {
+    public List<CurrencyDto> getAllCurrencies() {
         List<CurrencyDto> currenciesTable = loadCurrencies().stream()
                 .map(currency -> modelMapper.map(currency, CurrencyDto.class))
                 .collect(Collectors.toList());
@@ -50,53 +51,40 @@ public class CurrencyService {
         List<Currency> availableCurrencies = loadCurrencies();
         Currency from = getCurrencyByCode(currencyFrom, availableCurrencies);
         Currency to = getCurrencyByCode(currencyTo, availableCurrencies);
-        if (currencyFrom.equals("PLN")) {
-            convertationAmountDto.setAmount(validateAmount(amount / to.getRate()));
-            convertationAmountDto.setName(to.getName());
-        } else if (currencyTo.equals("PLN")) {
-            convertationAmountDto.setAmount(validateAmount(amount * from.getRate()));
-            convertationAmountDto.setName("polski złoty");
-        } else {
-            convertationAmountDto.setAmount(validateAmount(amount * from.getRate() / to.getRate()));
-            convertationAmountDto.setName(to.getName());
-        }
+        convertationAmountDto.setAmount(validateAmount(amount * from.getRate() / to.getRate()));
+        convertationAmountDto.setName(to.getName());
         loggerService.log("Converted " + amount + " " + currencyFrom + " to " + currencyTo);
         return convertationAmountDto;
     }
 
 
-    public List<RateDto> getRates(List<String> requiredCurrency) throws CurrencyNotFoundException {
-        List<RateDto> currencies = loadCurrencies().stream()
-                .filter(currency ->
-                        requiredCurrency.contains(currency.getCode()) &&
-                                requiredCurrency.remove(currency.getCode()))
-                .map(currency -> modelMapper.map(currency, RateDto.class))
-                .collect(Collectors.toList());
-        if (!requiredCurrency.isEmpty()) {
-            throw new CurrencyNotFoundException("Currency not found: " + requiredCurrency);
+    public List<RateDto> getRates(List<String> requiredCurrencies) throws CurrencyNotFoundException {
+        List<RateDto> currencyRateDtos = new ArrayList<>();
+        List<Currency> availableCurrencies = loadCurrencies();
+        for (String code : requiredCurrencies) {
+            currencyRateDtos.add(modelMapper.map(getCurrencyByCode(code, availableCurrencies), RateDto.class));
         }
-        loggerService.log("Got currencies for " + requiredCurrency);
-        return currencies;
+        loggerService.log("Got currencies for " + requiredCurrencies);
+        return currencyRateDtos;
     }
 
-    private double validateAmount(double amount) {
+    public double validateAmount(double amount) {
         if (amount <= 0 ||
                 amount == Double.POSITIVE_INFINITY ||
                 amount == Double.MAX_VALUE ||
-                Double.compare(-0.0f, amount) == 0 ||
                 Double.compare(+0.0f, amount) == 0) {
             throw new ArithmeticException("Bad input amount");
         }
         return amount;
     }
 
-    private Currency getCurrencyByCode(String currencyCode, List<Currency> availableCurrencies)
+    public Currency getCurrencyByCode(String currencyCode, List<Currency> availableCurrencies)
             throws CurrencyNotFoundException {
         Currency currency = availableCurrencies.stream()
-                .filter(currencyResDto -> currencyResDto.getCode().equals(currencyCode))
+                .filter(availableCurrency -> availableCurrency.toString().equalsIgnoreCase(currencyCode))
                 .findFirst()
                 .orElse(null);
-        if (currency == null && !currencyCode.equals("PLN")) {
+        if (currency == null) {
             throw new CurrencyNotFoundException("Currency: " + currencyCode + " not found");
         }
         return currency;

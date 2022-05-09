@@ -20,7 +20,7 @@ public class CurrencyController {
 
     @GetMapping("/table")
     ResponseEntity<List<CurrencyDto>> getAllCurrency() {
-        return ResponseEntity.ok().body(currencyService.getAllCurrency());
+        return ResponseEntity.ok().body(currencyService.getAllCurrencies());
     }
 
     @GetMapping("/convert")
