@@ -62,7 +62,8 @@ public class CurrencyService {
         List<RateDto> currencyRateDtos = new ArrayList<>();
         List<Currency> availableCurrencies = loadCurrencies();
         for (String code : requiredCurrencies) {
-            currencyRateDtos.add(modelMapper.map(getCurrencyByCode(code, availableCurrencies), RateDto.class));
+            currencyRateDtos.add(modelMapper.map(getCurrencyByCode(code, availableCurrencies),
+                    RateDto.class));
         }
         loggerService.log("Got currencies for " + requiredCurrencies);
         return currencyRateDtos;

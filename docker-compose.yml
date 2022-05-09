@@ -1,16 +1,22 @@
 version: '3.8'
 services:
 
-  api:
-    build: .
-    container_name: currency_api_container
-    ports:
-      - "8080:8080"
+  app:
+    image: 'currency_api_image'
+    build:
+      context: .
+    container_name: app
     depends_on:
-      - "db"
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=user
+      - SPRING_DATASOURCE_PASSWORD=password
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
 
   db:
-    container_name: postgres_container
+    container_name: postgres_database
     image: postgres
     restart: always
     environment:
@@ -24,7 +30,7 @@ services:
       - db-data:/var/lib/postgresql/data
 
   pgadmin:
-    container_name: pgadmin4_container
+    container_name: pgadmin
     image: dpage/pgadmin4:5.5
     restart: always
     environment:
