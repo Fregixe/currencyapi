@@ -2,20 +2,26 @@ package com.currency.api.service;
 
 import com.currency.api.model.entity.Action;
 import com.currency.api.repository.ActionRepository;
-import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
+@Getter
+@Setter
 public class LoggerService {
     private final ActionRepository actionRepository;
 
-    public void log(String action) {
-        Action act = new Action();
-        act.setAction(action);
-        act.setTime(new Timestamp(System.currentTimeMillis()));
-        actionRepository.save(act);
+    private Action action;
+
+    public Action log(String actionName) {
+        action = new Action();
+        action.setName(actionName);
+        action.setTime(new Timestamp(System.currentTimeMillis()));
+        return actionRepository.save(action);
     }
 }
