@@ -5,8 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Data
-@Setter
 @Getter
+@Setter
 public class CurrencyDto {
     private String name;
     private String code;
