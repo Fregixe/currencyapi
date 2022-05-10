@@ -16,7 +16,7 @@ You can also build and run app with maven or java but you still going to need yo
     
 # Accessing Database
 
-API is not specified to have access to database throgh controllers, so to access db with log history use pgadmin. <br/>
+API is not specified to have access to database throgh controllers, so to access databaseb with log history use pgadmin. <br/>
 Make sure your database container and pgadmin container are running and in your browser got to:
 ```
             http://localhost:5050/
@@ -32,7 +32,7 @@ In pgadmin add new server(left top corner), and in connection_name(connection se
             user: user
             password: password
 ```
-Now you should have access to the database(currency database -> Schemas -> Tables -> action table)
+Now you should have access to the database(Database postgres -> Schemas -> Tables -> action table)
 
 ## API Info
 
