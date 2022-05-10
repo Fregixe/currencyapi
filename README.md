@@ -5,8 +5,7 @@ CurrencyAPI is an application for converting currenciec based on Polish National
 ## Installation 
 
 Project runs on JDK 11. 
-That's a maven-based project, and application is Dockerized. 
-There are three containers for: database, api and pgadmin for administraing database. 
+That's a maven-based project, and application is Dockerized. There are three containers for: database, api and pgadmin for administraing database.<br/>
 To start api use docker-compose. 
 Make sure you have your docker-compose and docker installed and running and in project's directory run:
 ```
