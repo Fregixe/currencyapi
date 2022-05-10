@@ -17,10 +17,14 @@ You can also build and run app with maven or java but you still going to need yo
 
 API is not specified to have access to database throgh controllers, so to access db with log history use pgadmin.
 Make sure your database container and pgadmin container are running and and in your browser got to:
+```
             http://localhost:5050/
+```
 Login to the page using login and password:
+```
             login: admin@currency.com
             password: password
+```
 In pgadmin add new server(left top corner), and in connection_name(connection section) type:
             connection_name: currency
             user: user
