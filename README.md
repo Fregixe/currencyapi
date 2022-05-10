@@ -26,25 +26,34 @@ Login to the page using login and password:
             password: password
 ```
 In pgadmin add new server(left top corner), and in connection_name(connection section) type:
+```
             connection_name: currency
             user: user
             password: password
+```
 Now you should have access to the database(currency database -> Schemas -> Tables -> action table)
 
 ## Api Info
 
 Api starts on port :
+```
             http://localhost:8080/
+```
 Api has three controllers:
+
     1.GET - getAllCurrency() - doesn't require parameters and returns a List of available currencies.
             Returns: HTTP STATUS 200 in case of success.
             JSON:
+```
+
                   [
                     {
                       "code": "string",
                       "name": "string"
                     }
                   ]
+```
+
     2.GET - getConvertation(String codeFromCurrency, String codeToCurrency) - returns amount in the result of convertation from one currency to another.
             Requires Parameters: codeFromCurrency - currency from which convert code(case is ignored)
                                  codeToCurrency - currency to which convert code(case is ignored)
@@ -52,29 +61,41 @@ Api has three controllers:
             Returns: HTTP STATUS 200 - in case of success.
                      HTTP STATUS 400 - in case of bad input(code or amount)
             JSON: 
+```
+
                   {
                     "amount": 0,
                     "name": "string"
                   }
+```
     3.POST - getRates(List<String> codes) - returns list of rates for required currencies
              Requires Body: 
+```
+
                   [
                     {
                       "name": "string",
                       "rate": 0
                     }
                   ]
+```
              Returns: HTTP_STATUS 200 - in case of success
                       HTTP STATUS 400 - in case of bad code of currency
              JSON: 
+```
                   [
                     {
                       "name": "string",
                       "rate": 0
                     }
                   ]
-SWAGGER:
-    Api has a build-in swagger tool for easier testing api. Just go on http://localhost:8080/swagger-ui/ after running api.
+```
+## SWAGGER
+    Api has a build-in swagger tool for easier testing api. To use it, just after running the app go to:
+```
+    http://localhost:8080/swagger-ui/
+```
+    
 
  
   
