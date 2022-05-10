@@ -11,12 +11,12 @@ Make sure you have your docker-compose and docker installed and running and in p
 ```
             docker-compose up
 ```
-It should build images and run containers with api, database and pgadmin. 
+It should build images and run containers with api, database and pgadmin.<br/>
 You can also build and run app with maven or java but you still going to need your database container.
     
 ## Accessing Database
 
-API is not specified to have access to database throgh controllers, so to access db with log history use pgadmin.
+API is not specified to have access to database throgh controllers, so to access db with log history use pgadmin. <br/>
 Make sure your database container and pgadmin container are running and and in your browser got to:
 ```
             http://localhost:5050/
