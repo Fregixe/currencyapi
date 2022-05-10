@@ -17,7 +17,7 @@ You can also build and run app with maven or java but you still going to need yo
 # Accessing Database
 
 API is not specified to have access to database throgh controllers, so to access db with log history use pgadmin. <br/>
-Make sure your database container and pgadmin container are running and and in your browser got to:
+Make sure your database container and pgadmin container are running and in your browser got to:
 ```
             http://localhost:5050/
 ```
