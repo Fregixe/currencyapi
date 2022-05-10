@@ -42,9 +42,9 @@ Api starts on port :
 ```
 Api has three controllers:
 
-    1.GET - getAllCurrency() - doesn't require parameters and returns a List of available currencies.
-            Returns: HTTP STATUS 200 in case of success.
-            JSON:
+1.GET - getAllCurrency() - doesn't require parameters and returns a List of available currencies.
+Returns: HTTP STATUS 200 in case of success.
+JSON:
 ```
 
                   [
@@ -55,12 +55,12 @@ Api has three controllers:
                   ]
 ```
 
-    2.GET - getConvertation(String codeFromCurrency, String codeToCurrency) - returns amount in the result of convertation from one currency to another.
-            Requires Parameters: codeFromCurrency - currency from which convert code(case is ignored)
-                                 codeToCurrency - currency to which convert code(case is ignored)
-                                 amount - amount of money to convert(>0)
-            Returns: HTTP STATUS 200 - in case of success.
-                     HTTP STATUS 400 - in case of bad input(code or amount)
+2.GET - getConvertation(String codeFromCurrency, String codeToCurrency) - returns amount in the result of convertation from one currency to another.
+Requires Parameters: codeFromCurrency - currency from which convert code(case is ignored)
+                     codeToCurrency - currency to which convert code(case is ignored)
+                     amount - amount of money to convert(>0)
+Returns: HTTP STATUS 200 - in case of success.
+         HTTP STATUS 400 - in case of bad input(code or amount)
             JSON: 
 ```
 
@@ -69,8 +69,8 @@ Api has three controllers:
                     "name": "string"
                   }
 ```
-    3.POST - getRates(List<String> codes) - returns list of rates for required currencies
-             Requires Body: 
+3.POST - getRates(List<String> codes) - returns list of rates for required currencies
+ Requires Body: 
 ```
 
                   [
@@ -80,9 +80,10 @@ Api has three controllers:
                     }
                   ]
 ```
-             Returns: HTTP_STATUS 200 - in case of success
-                      HTTP STATUS 400 - in case of bad code of currency
-             JSON: 
+ Returns: HTTP_STATUS 200 - in case of success
+          HTTP STATUS 400 - in case of bad code of currency
+```
+JSON: 
 ```
                   [
                     {
