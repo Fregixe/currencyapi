@@ -95,7 +95,7 @@ JSON:
 ```
 ## SWAGGER
     
-Api has a build-in swagger tool for easier testing api. To use it, just after running the app go to:
+API has a build-in swagger tool for easier testing api. To use it, just after running the app go to:
 ```
     http://localhost:8080/swagger-ui/
 ```
