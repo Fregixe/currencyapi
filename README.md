@@ -28,7 +28,7 @@ Login to the page using login and password:
 ```
 In pgadmin add new server(left top corner), and in connection_name(connection section) type:
 ```
-            connection_name: currency
+            host_name/adress: postgres_database
             user: user
             password: password
 ```
