@@ -1,4 +1,4 @@
-# Spring Boot Application "CurrencyAPI" Project
+# Spring Boot Application "CurrencyAPI" 
 
 CurrencyAPI is an application for converting currenciec based on Polish National Bank medium rates;
 
@@ -34,9 +34,9 @@ In pgadmin add new server(left top corner), and in connection_name(connection se
 ```
 Now you should have access to the database(currency database -> Schemas -> Tables -> action table)
 
-## Api Info
+## API Info
 
-Api starts on port :
+API starts on port :
 ```
             http://localhost:8080/
 ```
@@ -81,8 +81,8 @@ JSON:
                   ]
 ```
  Returns: HTTP_STATUS 200 - in case of success<br/>
-          HTTP STATUS 400 - in case of bad code of currency
-```
+          HTTP STATUS 400 - in case of bad code of currency<br/>
+
 JSON: 
 ```
                   [
