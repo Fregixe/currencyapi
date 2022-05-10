@@ -42,8 +42,8 @@ Api starts on port :
 ```
 Api has three controllers:
 
-1.GET - getAllCurrency() - doesn't require parameters and returns a List of available currencies.
-Returns: HTTP STATUS 200 in case of success.
+1.GET - getAllCurrency() - doesn't require parameters and returns a List of available currencies.<br/>
+Returns: HTTP STATUS 200 in case of success.<br/>
 JSON:
 ```
 
@@ -55,13 +55,13 @@ JSON:
                   ]
 ```
 
-2.GET - getConvertation(String codeFromCurrency, String codeToCurrency) - returns amount in the result of convertation from one currency to another.
-Requires Parameters: codeFromCurrency - currency from which convert code(case is ignored)
-                     codeToCurrency - currency to which convert code(case is ignored)
-                     amount - amount of money to convert(>0)
-Returns: HTTP STATUS 200 - in case of success.
-         HTTP STATUS 400 - in case of bad input(code or amount)
-            JSON: 
+2.GET - getConvertation(String codeFromCurrency, String codeToCurrency) - returns amount in the result of convertation from one currency to another.<br/>
+Requires Parameters: codeFromCurrency - currency from which convert code(case is ignored)<br/>
+                     codeToCurrency - currency to which convert code(case is ignored)<br/>
+                     amount - amount of money to convert(>0)<br/>
+Returns: HTTP STATUS 200 - in case of success.<br/>
+         HTTP STATUS 400 - in case of bad input(code or amount)<br/>
+JSON: 
 ```
 
                   {
@@ -69,7 +69,7 @@ Returns: HTTP STATUS 200 - in case of success.
                     "name": "string"
                   }
 ```
-3.POST - getRates(List<String> codes) - returns list of rates for required currencies
+3.POST - getRates(List<String> codes) - returns list of rates for required currencies<br/>
  Requires Body: 
 ```
 
@@ -80,7 +80,7 @@ Returns: HTTP STATUS 200 - in case of success.
                     }
                   ]
 ```
- Returns: HTTP_STATUS 200 - in case of success
+ Returns: HTTP_STATUS 200 - in case of success<br/>
           HTTP STATUS 400 - in case of bad code of currency
 ```
 JSON: 
